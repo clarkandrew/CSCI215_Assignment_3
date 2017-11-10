@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>Picture Viewer</title>
+
+    <style>
+        body {
+            margin: 0px;
+            padding: 0px;
+            font-family: 'Open Sans', sans-serif;
+            background-color: #212121;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            padding-top: 50px;
+            text-align: center;
+        }
+        
+        .tA {
+            width: 300px;
+            height: 220px;
+            background-color: #ecf0f1;
+            padding: 20px;
+            display: inline-block;
+            overflow: hidden;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+            margin: 0px 30px 0px 30px;
+        }
+        
+        .tA .textb {
+            width: 100%;
+            height: 150px;
+            margin-top: 20px;
+            background-color: white;
+            overflow-y: scroll;
+            padding: 5px;
+            font-weight: 300;
+        }
+        
+        .numBox {
+            display: inline-block;
+        }
+        
+        .numBox img {
+            margin: auto;
+            left: 0;
+            right: 0;
+            width: 25px;
+        }
+        
+        .remain {
+            line-height: 44px;
+        }
+    </style>
+
+
+
+</head>
+
+
+
+<body>
+
+
+    <main>
+
+        <div class='tA'>
+            <t>You are only allowed to enter 50 characters in the input box.</t>
+            <div contenteditable="true" class='textb' id="inputText"></div>
+        </div>
+        <div class='tA'>
+            <t class='remain'>Number of characters remaining</t>
+            <div readonly="true" class='textb' id="outputText"></div>
+        </div>
+
+    </main>
+
+
+</body>
+
+
+
+
+</html>
+
+
+<script>
+    $("#inputText").on("change keyup paste", function () {
+
+        setTimeout(
+            function () {
+
+
+                var currText = $("#inputText").text();
+                var textLen = currText.length;
+                var remaining = 50 - textLen;
+                var imgBuild = "<br><div class='numBox'>";
+
+                if (remaining <= 0) {
+                    currText = currText.slice(0, 50);
+                    $("#inputText").text(currText);
+                    $("#inputText").trigger('blur');
+                    imgBuild = imgBuild + "<img src='imgs/00.png'>";
+                } else if (remaining >= 10) {
+                    remaining = remaining.toString();
+                    var firstNum = remaining[0];
+                    var secondNum = remaining[1];
+                    imgBuild = imgBuild + "<img src='imgs/0" + firstNum + ".png'><img src='imgs/0" + secondNum + ".png'>";
+                } else {
+                    imgBuild = imgBuild + "<img src='imgs/0" + remaining + ".png'>";
+                }
+
+                imgBuild = imgBuild + "</div>"
+
+
+
+                var outputText = currText + imgBuild;
+                $("#outputText").html(outputText);
+
+            }, 300);
+    })
+</script>

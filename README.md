@@ -1,5 +1,7 @@
 # CSCI215_Assignment_3
 
+# Andrew Clark
+
 ## Due 9 Nov 2017 @ 11:59 pm
 
 ## Adding to Course website

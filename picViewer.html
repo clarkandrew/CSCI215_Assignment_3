@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>Picture Viewer</title>
+
+    <style>
+        body {
+            margin: 0px;
+            padding: 0px;
+            font-family: 'Open Sans', sans-serif;
+            background-color: #212121;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            padding-top: 20px;
+        }
+        
+        .box {
+            width: 300px;
+            height: 200px;
+            background-color: white;
+            margin: 0px 20px 20px 20px;
+            display: inline-block;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+            transition: all 1s cubic-bezier(.25, .8, .25, 1);
+            cursor: pointer;
+            overflow: hidden;
+        }
+        
+        .box:hover {
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+        }
+        
+        .picBox {
+            overflow: hidden;
+            background-color: black;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .pic {
+            background-size: cover;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        
+        main {
+            text-align: center;
+            width: 100%;
+            max-width: 1200px;
+            margin: auto;
+        }
+        
+        .displayPic {
+            position: absolute;
+            width: 950px;
+            height: 569px;
+            display: none;
+            overflow: hidden;
+            border-radius: 3px;
+            margin: auto;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            background-color: white;
+            padding: 5px;
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+        }
+        
+        .closeBox {
+            width: 100%;
+            height: 30px;
+            background-color: #1b1b1b;
+            margin-bottom: 5px;
+            text-align: right;
+            background-color: #ecf0f1;
+        }
+        
+        .closeBox t {
+            line-height: 30px;
+            margin-right: 10px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        
+        .displayImg {
+            width: 100%;
+            height: calc(100% - 30px);
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+        
+        h1 {
+            padding-left: 30px;
+            font-size: 40px;
+        }
+    </style>
+
+
+
+</head>
+
+
+
+<body>
+
+    <div class='displayPic'>
+        <div class='closeBox'>
+            <t onclick="closeImg()">CLOSE</t>
+        </div>
+        <div class='displayImg'></div>
+    </div>
+
+    <h1>Wallpapers</h1>
+    <main>
+
+
+        <div class="box">
+            <div class='picBox'>
+                <div class='pic' style='background-image: url("https://wallpapershome.com/images/pages/pic_hs/12000.jpg");'></div>
+            </div>
+        </div>
+
+        <div class="box">
+            <div class='picBox'>
+                <div class='pic' style='background-image: url("https://www.desktopbackground.org/download/1280x720/2014/01/13/700742_seaside-promenade-mac-wallpapers-download_1920x1080_h.jpg");'></div>
+            </div>
+        </div>
+
+        <div class="box">
+            <div class='picBox'>
+                <div class='pic' style='background-image: url("http://www.wallpapers4k.us/wp-content/uploads/2017/10/green-field-mountain-trees-landscape-wallpaper-1280x720.jpg");'></div>
+            </div>
+        </div>
+
+        <div class="box">
+            <div class='picBox'>
+                <div class='pic' style='background-image: url("https://wallpaperstock.net/wallpapers/thumbs1/49313hd.jpg");'></div>
+            </div>
+        </div>
+
+        <div class="box">
+            <div class='picBox'>
+                <div class='pic' style='background-image: url("https://wallpapershome.com/images/pages/pic_hs/3959.jpg");'></div>
+            </div>
+        </div>
+
+        <div class="box">
+            <div class='picBox'>
+                <div class='pic' style='background-image: url("https://wallpapershome.com/images/pages/pic_hs/3960.jpg");'></div>
+            </div>
+        </div>
+
+
+    </main>
+
+
+</body>
+
+
+<script>
+    function closeImg() {
+        $(".displayPic").fadeOut(500);
+    }
+
+    $(".pic").click(function () {
+        var src = $(this).css("background-image");
+
+        $(".displayPic").fadeIn(500);
+        $(".displayImg").css("background-image", src);
+
+    });
+    $(".pic").mouseenter(function () {
+        $(this).animate({
+            width: 400,
+            marginLeft: -50
+        }, {
+            easing: 'swing',
+            duration: 300
+        });
+    });
+    $(".pic").mouseleave(function () {
+
+        $(this).animate({
+            width: 300,
+            marginLeft: -0
+        }, {
+            easing: 'swing',
+            duration: 300
+        });
+    });
+</script>
+
+
+</html>
